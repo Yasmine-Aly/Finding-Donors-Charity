@@ -1,13 +1,11 @@
-###########################################
-# Suppress matplotlib user warnings
-# Necessary for newer version of matplotlib
+
 import warnings
 warnings.filterwarnings("ignore", category = UserWarning, module = "matplotlib")
 #
 # Display inline matplotlib plots with IPython
 from IPython import get_ipython
 get_ipython().run_line_magic('matplotlib', 'inline')
-###########################################
+
 
 import matplotlib.pyplot as pl
 import matplotlib.patches as mpatches
@@ -106,7 +104,7 @@ def evaluate(results, accuracy, f1):
     ax[1, 1].set_ylim((0, 1))
     ax[1, 2].set_ylim((0, 1))
 
-    # Create patches for the legend
+ 
     patches = []
     for i, learner in enumerate(results.keys()):
         patches.append(mpatches.Patch(color = colors[i], label = learner))
@@ -124,12 +122,12 @@ def evaluate(results, accuracy, f1):
 
 def feature_plot(importances, X_train, y_train):
     
-    # Display the five most important features
+ 
     indices = np.argsort(importances)[::-1]
     columns = X_train.columns.values[indices[:5]]
     values = importances[indices][:5]
 
-    # Creat the plot
+
     fig = pl.figure(figsize = (9,5))
     pl.title("Normalized Weights for First Five Most Predictive Features", fontsize = 16)
     pl.bar(np.arange(5), values, width = 0.6, align="center", color = '#00A000', \
